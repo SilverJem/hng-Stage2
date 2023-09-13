@@ -108,9 +108,7 @@ const Featured = () => {
                 <div className="rate">
                   Released: <p data-testid="movie-release-date">{item.release_date}</p>
                 </div>
-                <div className="imdb-id">
-                  IMDb ID: <span>{imdbIds[index]}</span>
-                </div>
+               
               </div>
             </div>
           ))}
