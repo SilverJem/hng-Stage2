@@ -4,16 +4,10 @@ import find from './images/search.png'
 import logo from './images/tv.png'
 import  propTypes  from 'prop-types'
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 const Navbar = ({clas})=> {
+  const navigate = useNavigate()
   const [content, setContent] = useState("")
-  const handleSubmit = (e) => {
-    e.preventDefault(); 
-
-    if (content) {
-      window.location.href = `/search/${content}`;
-    }
-  };
 
   return (
     <div>
@@ -25,16 +19,14 @@ const Navbar = ({clas})=> {
     </div>
     </Link>
     <div className="search">
-   <form onSubmit={handleSubmit}>
       <input
         type="text"
         value={content}
         placeholder="Enter something"
         onChange={(e)=>setContent(e.target.value)}
       />
-    
-            <img src={find}/>
-      </form>
+      <Link to={`/search/${content}`}>
+         <img src={find}/>  </Link>
     </div>
     <div className="login">
         <a>Sign In</a>
