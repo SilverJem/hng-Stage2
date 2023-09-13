@@ -41,20 +41,7 @@ const Header = () => {
     getMovieData();
   }, []);
 
-  const handleWatchTrailerClick = async () => {
-    try {
-      const imdbResponse = await axios.get(`https://api.themoviedb.org/3/movie/${movieId}/external_ids`, {
-        headers: {
-          accept: 'application/json',
-          Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2MzMxNjg5NWNiMmQ1MzNiNWY4MWJmNjk2ZWNkYWQ1MSIsInN1YiI6IjY0ZmVjYmJhZGI0ZWQ2MTAzNDNlZjgwNCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.IRdbDejGYWwScmljrO1N1uRLGhQHBN0cRWvhVmQ6a64',
-        },
-      });
 
-      setImdbIds(imdbResponse.data.imdb_id);
-    } catch (error) {
-      console.error('Error fetching IMDb ID:', error);
-    }
-  };
 
   return (
     <>
@@ -76,7 +63,7 @@ const Header = () => {
             </div>
           </div>
           <p>{overview}</p>
-         <Link to={`/movies/${imdbId}`} ><button onClick={handleWatchTrailerClick}>
+         <Link to='/' ><button>
             <img src={later} alt="Play" /> Watch trailer
           </button></Link> 
         </div>
