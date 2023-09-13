@@ -30,7 +30,7 @@ const Featured = () => {
     axios(options)
       .then((response) => {
         setMovies(response.data.results.slice(0, 10));
-        console.log(response.data.results)
+      
       })
       .catch((error) => {
         console.error(error);
