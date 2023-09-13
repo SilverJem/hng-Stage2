@@ -7,6 +7,13 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 const Navbar = ({clas})=> {
   const [content, setContent] = useState("")
+  const handleSubmit = (e) => {
+    e.preventDefault(); 
+
+    if (content) {
+      window.location.href = `/search/${content}`;
+    }
+  };
 
   return (
     <div>
@@ -18,13 +25,15 @@ const Navbar = ({clas})=> {
     </div>
     </Link>
     <div className="search">
-   <form>
+   <form onSubmit={handleSubmit}>
       <input
         type="text"
+        value={content}
         placeholder="Enter something"
         onChange={(e)=>setContent(e.target.value)}
       />
-            <Link to={`/search/${content}`}><img src={find}/></Link>
+    
+            <img src={find}/>
       </form>
     </div>
     <div className="login">
