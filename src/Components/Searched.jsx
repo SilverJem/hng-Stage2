@@ -4,7 +4,7 @@ import axios from 'axios';
 import Loader from './Loader';
 import Navbar from './Navbar';
 import propType from 'prop-types'
-import '../../searched.css'
+import './searched.css'
 const Searched = ({con}) => {
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
