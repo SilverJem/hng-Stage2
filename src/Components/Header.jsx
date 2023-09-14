@@ -63,7 +63,7 @@ const Header = () => {
             </div>
           </div>
           <p>{overview}</p>
-         <Link to='/' ><button>
+         <Link to={`/movies/${movieId}`} ><button>
             <img src={later} alt="Play" /> Watch trailer
           </button></Link> 
         </div>
