@@ -9,25 +9,25 @@ import tomato from './images/PngItem_1381056 1.png';
 import imdb from './images/MV5BMTk3ODA4Mjc0NF5BMl5BcG5nXkFtZTgwNDc1MzQ2OTE@ 1.png';
 
 const Details = () => {
-  const { id } = useParams(); 
+  const { id } = useParams();
   const [movieDetails, setMovieDetails] = useState([]);
   const [newmovieDetails, setNewMovieDetails] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const fetchTmdbMovieDetails = async () => {
-      const url = `https://api.themoviedb.org/3/find/${id}?external_source=imdb_id`;
+      const url = `https://api.themoviedb.org/3/movie/${id}?language=en-US`;
       const options = {
         method: 'GET',
         headers: {
           accept: 'application/json',
-          Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2MzMxNjg5NWNiMmQ1MzNiNWY4MWJmNjk2ZWNkYWQ1MSIsInN1YiI6IjY0ZmVjYmJhZGI0ZWQ2MTAzNDNlZjgwNCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.IRdbDejGYWwScmljrO1N1uRLGhQHBN0cRWvhVmQ6a64', 
+          Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2MzMxNjg5NWNiMmQ1MzNiNWY4MWJmNjk2ZWNkYWQ1MSIsInN1YiI6IjY0ZmVjYmJhZGI0ZWQ2MTAzNDNlZjgwNCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.IRdbDejGYWwScmljrO1N1uRLGhQHBN0cRWvhVmQ6a64',
         },
       };
 
       try {
         const response = await axios(url, options);
-        setMovieDetails(response.data.movie_results || []);
+        setMovieDetails([response.data]);
       } catch (error) {
         console.error('Error fetching movie details:', error);
       }
@@ -40,7 +40,7 @@ const Details = () => {
           method: 'GET',
           headers: {
             accept: 'application/json',
-            Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2MzMxNjg5NWNiMmQ1MzNiNWY4MWJmNjk2ZWNkYWQ1MSIsInN1YiI6IjY0ZmVjYmJhZGI0ZWQ2MTAzNDNlZjgwNCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.IRdbDejGYWwScmljrO1N1uRLGhQHBN0cRWvhVmQ6a64', 
+            Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2MzMxNjg5NWNiMmQ1MzNiNWY4MWJmNjk2ZWNkYWQ1MSIsInN1YiI6IjY0ZmVjYmJhZGI0ZWQ2MTAzNDNlZjgwNCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.IRdbDejGYWwScmljrO1N1uRLGhQHBN0cRWvhVmQ6a64',
           },
         };
 
@@ -64,7 +64,6 @@ const Details = () => {
     fetchMovieData();
   }, [id, movieDetails]);
 
-
   return (
     <div>
       {isLoading ? (
@@ -78,10 +77,10 @@ const Details = () => {
                 <b>
                   <div className="postDetails" key={item.id}>
                     <div>
-                    <img
-                      src={`https://image.tmdb.org/t/p/w500${item.poster_path || item.backdrop_path}`}
-                      alt="Your Image"
-                    />
+                      <img
+                        src={`https://image.tmdb.org/t/p/w500${item.poster_path || item.backdrop_path}`}
+                        alt="Your Image"
+                      />
                     </div>
                   </div>
                   <div className="content">
